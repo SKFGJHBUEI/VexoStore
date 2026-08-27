@@ -9,10 +9,12 @@
 
 <link rel="icon" type="image/png" href="퐕퐄퐗퐎 퐒퐓퐎퐑퐄.png">
 <link rel="apple-touch-icon" href="퐕퐄퐗퐎 퐒퐓퐎퐑퐄.png">
+
 <meta property="og:title" content="𝐕𝐄𝐗𝐎 𝐒𝐓𝐎𝐑𝐄">
 <meta property="og:description" content="متجر 𝐕𝐄𝐗𝐎 الرسمي">
 <meta property="og:image" content="퐕퐄퐗퐎 퐒퐓퐎퐑퐄.png">
 <meta property="og:type" content="website">
+
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="𝐕𝐄𝐗𝐎 𝐒𝐓𝐎𝐑𝐄">
 <meta name="twitter:description" content="متجر 𝐕𝐄𝐗𝐎 الرسمي">
@@ -63,10 +65,20 @@ body{
 }
 
 @keyframes fall{
-    0%{transform:translateY(-20px);opacity:0;}
-    10%{opacity:1;}
-    80%{opacity:1;}
-    100%{transform:translateY(110vh);opacity:0;}
+    0%{
+        transform:translateY(-20px);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    80%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh);
+        opacity:0;
+    }
 }
 
 header{
@@ -229,8 +241,8 @@ header{
 
 .products{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
     margin-top:25px;
 }
 
@@ -249,31 +261,31 @@ header{
 }
 
 .product-image{
-    height:190px;
+    height:150px;
     background:
     radial-gradient(circle at center,rgba(0,140,255,.18),transparent 55%),
     #080d13;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:70px;
+    font-size:52px;
 }
 
 .product-content{
-    padding:22px;
+    padding:18px;
     text-align:center;
 }
 
 .product h3{
-    font-size:21px;
-    margin-bottom:10px;
+    font-size:19px;
+    margin-bottom:9px;
 }
 
 .product p{
     color:var(--gray);
-    font-size:14px;
+    font-size:13px;
     line-height:1.8;
-    margin-bottom:18px;
+    margin-bottom:16px;
 }
 
 .contact-btn{
@@ -281,11 +293,11 @@ header{
     border:none;
     background:var(--blue);
     color:white;
-    padding:13px;
+    padding:12px;
     border-radius:11px;
     cursor:pointer;
     font-weight:bold;
-    font-size:15px;
+    font-size:14px;
 }
 
 .contact-btn:hover{
@@ -295,11 +307,11 @@ header{
 
 .delete-btn{
     width:100%;
-    margin-top:10px;
+    margin-top:9px;
     border:1px solid #ff3b3b;
     background:rgba(255,59,59,.08);
     color:#ff5c5c;
-    padding:11px;
+    padding:10px;
     border-radius:11px;
     cursor:pointer;
     font-weight:bold;
@@ -308,6 +320,13 @@ header{
 .delete-btn:hover{
     background:#ff3b3b;
     color:white;
+}
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    color:var(--gray);
+    padding:40px;
 }
 
 .add-section{
@@ -570,6 +589,14 @@ footer{
     filter:brightness(0) invert(1);
 }
 
+@media(max-width:850px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
 @media(max-width:700px){
 
     .products{
@@ -659,7 +686,10 @@ onclick="openLogin()">
 
 <section class="hero">
 
-<img src="퐕퐄퐗퐎 퐒퐓퐎퐑퐄.png" alt="𝐕𝐄𝐗𝐎 𝐒𝐓𝐎𝐑𝐄" class="store-logo">
+<img
+src="퐕퐄퐗퐎 퐒퐓퐎퐑퐄.png"
+alt="𝐕𝐄𝐗𝐎 𝐒𝐓𝐎𝐑𝐄"
+class="store-logo">
 
 <h1>
 مرحبًا بك في متجر <span>𝐕𝐄𝐗𝐎</span>
@@ -699,7 +729,10 @@ oninput="searchProducts()">
 
 </div>
 
-<div class="products" id="products"></div>
+<div
+class="products"
+id="products">
+</div>
 
 </section>
 
@@ -790,37 +823,44 @@ onclick="addProduct()">
 <div class="social-links">
 
 <button class="social-btn" onclick="openDiscord()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/discord.svg">
 </button>
 
 <button class="social-btn" onclick="openTelegram()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/telegram.svg">
 </button>
 
 <button class="social-btn" onclick="openWhatsApp()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/whatsapp.svg">
 </button>
 
 <button class="social-btn" onclick="openInstagram()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/instagram.svg">
 </button>
 
 <button class="social-btn" onclick="openYouTube()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/youtube.svg">
 </button>
 
 <button class="social-btn" onclick="openTikTok()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/tiktok.svg">
 </button>
 
 <button class="social-btn" onclick="openFacebook()">
-<img class="social-icon"
+<img
+class="social-icon"
 src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/facebook.svg">
 </button>
 
@@ -840,11 +880,15 @@ src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/facebook.svg">
 
 </footer>
 
-<div class="modal" id="loginModal">
+<div
+class="modal"
+id="loginModal">
 
 <div class="login-box">
 
-<button class="close" onclick="closeLogin()">
+<button
+class="close"
+onclick="closeLogin()">
 ×
 </button>
 
@@ -882,11 +926,15 @@ onclick="adminLogin()">
 
 </div>
 
-<div class="contact-modal" id="contactModal">
+<div
+class="contact-modal"
+id="contactModal">
 
 <div class="contact-box">
 
-<button class="close" onclick="closeContact()">
+<button
+class="close"
+onclick="closeContact()">
 ×
 </button>
 
@@ -941,10 +989,38 @@ Facebook
 
 </div>
 
-<script>
+<script type="module">
 
-const ADMIN_USERNAME = "Admin";
-const ADMIN_PASSWORD = "Anishfgçgçbi'gnoerubtn13388";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue,
+    push,
+    set,
+    remove
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCOPUfOHg3YjB63dq7Xk67KbDLQvyHaXIY",
+    authDomain: "vexo-store-007.firebaseapp.com",
+    databaseURL: "https://vexo-store-007-default-rtdb.firebaseio.com",
+    projectId: "vexo-store-007",
+    storageBucket: "vexo-store-007.firebasestorage.app",
+    messagingSenderId: "927286696006",
+    appId: "1:927286696006:web:1f3251c8459596c62b9247",
+    measurementId: "G-64MBDN7E4E"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const productsRef = ref(db,"products");
+
+const ADMIN_USERNAME = "Owner";
+const ADMIN_PASSWORD = "vN7!qZ2@Lx9#T4$wK8^mP6&cR3*Yh5!S";
 
 const DISCORD_URL =
 "https://discord.gg/wZCyyzWzv";
@@ -967,472 +1043,667 @@ const TIKTOK_URL =
 const FACEBOOK_URL =
 "https://www.facebook.com/";
 
-let products = JSON.parse(
-localStorage.getItem("vexoProducts")
-) || [
+const originalProducts = [
 
 {
-name:"تبديل الحساب",
-price:"تواصل معنا",
-icon:"🔄",
-description:"تريد تبديل حسابك؟ تواصل معنا لمعرفة التفاصيل.",
-type:"original"
+    name:"تبديل الحساب",
+    icon:"🔄",
+    description:"تريد تبديل حسابك؟ تواصل معنا لمعرفة التفاصيل.",
+    type:"original"
 },
 
 {
-name:"شراء الحسابات",
-price:"تواصل معنا",
-icon:"💰",
-description:"تريد شراء حساب؟ تواصل معنا لمعرفة الحسابات المتوفرة.",
-type:"original"
+    name:"شراء الحسابات",
+    icon:"💰",
+    description:"تريد شراء حساب؟ تواصل معنا لمعرفة الحسابات المتوفرة.",
+    type:"original"
 },
 
 {
-name:"شراء الهاكات",
-price:"تواصل معنا",
-icon:"🧑‍💻",
-description:"تريد شراء برنامج أو خدمة؟ تواصل معنا لمعرفة التفاصيل.",
-type:"original"
+    name:"شراء الهاكات",
+    icon:"🧑‍💻",
+    description:"تريد شراء برنامج أو خدمة؟ تواصل معنا لمعرفة التفاصيل.",
+    type:"original"
 },
 
 {
-name:"شراء الملابس",
-price:"تواصل معنا",
-icon:"👕",
-description:"تريد شراء ملابس؟ تواصل معنا لمعرفة المنتجات المتوفرة.",
-type:"original"
+    name:"شراء الملابس",
+    icon:"👕",
+    description:"تريد شراء ملابس؟ تواصل معنا لمعرفة المنتجات المتوفرة.",
+    type:"original"
 }
 
 ];
 
+let products = [];
+let initialized = false;
+
 function isAdmin(){
-return localStorage.getItem("vexoAdmin") === "true";
+    return localStorage.getItem("vexoAdmin") === "true";
 }
 
 function displayProducts(list = products){
 
-const container =
-document.getElementById("products");
+    const container =
+    document.getElementById("products");
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-if(!list.length){
+    if(!list.length){
 
-container.innerHTML=`
-<div class="empty">
-لا توجد نتائج 🔎
-</div>
-`;
+        const empty =
+        document.createElement("div");
 
-return;
-}
+        empty.className = "empty";
+        empty.textContent = "لا توجد نتائج 🔎";
 
-list.forEach((product,index)=>{
+        container.appendChild(empty);
 
-const card =
-document.createElement("div");
+        return;
+    }
 
-card.className="product";
+    list.forEach(product => {
 
-let deleteButton = "";
+        const card =
+        document.createElement("div");
 
-if(isAdmin()){
+        card.className = "product";
 
-deleteButton = `
-<button
-class="delete-btn"
-onclick="deleteProduct(${index})">
-🗑️ حذف المنتج
-</button>
-`;
+        const image =
+        document.createElement("div");
 
-}
+        image.className = "product-image";
+        image.textContent = product.icon || "📦";
 
-card.innerHTML=`
+        const content =
+        document.createElement("div");
 
-<div class="product-image">
-${product.icon || "📦"}
-</div>
+        content.className = "product-content";
 
-<div class="product-content">
+        const title =
+        document.createElement("h3");
 
-<h3>
-${escapeHTML(product.name)}
-</h3>
+        title.textContent = product.name || "";
 
-<p>
-${escapeHTML(product.description)}
-</p>
+        const description =
+        document.createElement("p");
 
-<button
-class="contact-btn"
-onclick="contactProduct(${index})">
-📩 تواصل معنا عبر
-</button>
+        description.textContent =
+        product.description || "";
 
-${deleteButton}
+        const contact =
+        document.createElement("button");
 
-</div>
-`;
+        contact.className = "contact-btn";
+        contact.textContent = "📩 تواصل معنا عبر";
 
-container.appendChild(card);
+        contact.onclick = function(){
+            contactProduct(product.id);
+        };
 
-});
+        content.appendChild(title);
+        content.appendChild(description);
+        content.appendChild(contact);
 
+        if(isAdmin()){
+
+            const deleteButton =
+            document.createElement("button");
+
+            deleteButton.className = "delete-btn";
+            deleteButton.textContent = "🗑️ حذف المنتج";
+
+            deleteButton.onclick = function(){
+                deleteProduct(product.id);
+            };
+
+            content.appendChild(deleteButton);
+        }
+
+        card.appendChild(image);
+        card.appendChild(content);
+
+        container.appendChild(card);
+    });
 }
 
 function searchProducts(){
 
-const query =
-document
-.getElementById("searchInput")
-.value
-.toLowerCase()
-.trim();
+    const query =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
 
-const result =
-products.filter(product =>
+    const result =
+    products.filter(product => {
 
-(
-product.name +
-" " +
-product.description
-)
-.toLowerCase()
-.includes(query)
+        const name =
+        String(product.name || "")
+        .toLowerCase();
 
-);
+        const description =
+        String(product.description || "")
+        .toLowerCase();
 
-displayProducts(result);
+        return (
+            name.includes(query) ||
+            description.includes(query)
+        );
+    });
 
+    displayProducts(result);
 }
 
-function contactProduct(index){
+function contactProduct(id){
 
-const product =
-products[index];
+    const product =
+    products.find(item => item.id === id);
 
-document
-.getElementById("selectedProduct")
-.textContent =
-"تريد الاستفسار عن: " + product.name;
+    if(!product){
+        return;
+    }
 
-document
-.getElementById("contactModal")
-.classList.add("active");
+    document
+    .getElementById("selectedProduct")
+    .textContent =
+    "تريد الاستفسار عن: " + product.name;
 
+    document
+    .getElementById("contactModal")
+    .classList.add("active");
 }
 
 function closeContact(){
 
-document
-.getElementById("contactModal")
-.classList.remove("active");
-
+    document
+    .getElementById("contactModal")
+    .classList.remove("active");
 }
 
 function openLogin(){
 
-document
-.getElementById("loginModal")
-.classList.add("active");
-
+    document
+    .getElementById("loginModal")
+    .classList.add("active");
 }
 
 function closeLogin(){
 
-document
-.getElementById("loginModal")
-.classList.remove("active");
-
+    document
+    .getElementById("loginModal")
+    .classList.remove("active");
 }
 
 function adminLogin(){
 
-const username =
-document
-.getElementById("adminUsername")
-.value
-.trim();
+    const username =
+    document
+    .getElementById("adminUsername")
+    .value
+    .trim();
 
-const password =
-document
-.getElementById("adminPassword")
-.value;
+    const password =
+    document
+    .getElementById("adminPassword")
+    .value;
 
-if(
-username === ADMIN_USERNAME &&
-password === ADMIN_PASSWORD
-){
+    if(
+        username === ADMIN_USERNAME &&
+        password === ADMIN_PASSWORD
+    ){
 
-localStorage.setItem(
-"vexoAdmin",
-"true"
-);
+        localStorage.setItem(
+            "vexoAdmin",
+            "true"
+        );
 
-closeLogin();
-updateAdmin();
+        closeLogin();
+        updateAdmin();
 
-alert("تم تسجيل دخول الإدارة بنجاح 👑");
+        alert(
+            "تم تسجيل دخول الإدارة بنجاح 👑"
+        );
 
-}else{
+    }else{
 
-alert("بيانات الدخول غير صحيحة.");
-
-}
-
+        alert(
+            "بيانات الدخول غير صحيحة."
+        );
+    }
 }
 
 function updateAdmin(){
 
-const admin = isAdmin();
+    const admin = isAdmin();
 
-const area =
-document.getElementById("adminAddSection");
+    const area =
+    document.getElementById(
+        "adminAddSection"
+    );
 
-const user =
-document.getElementById("adminUser");
+    const user =
+    document.getElementById(
+        "adminUser"
+    );
 
-const login =
-document.getElementById("loginButton");
+    const login =
+    document.getElementById(
+        "loginButton"
+    );
 
-if(admin){
+    if(admin){
 
-area.classList.add("visible");
-user.classList.add("active");
-login.style.display="none";
+        area.classList.add("visible");
+        user.classList.add("active");
+        login.style.display = "none";
 
-}else{
+    }else{
 
-area.classList.remove("visible");
-user.classList.remove("active");
-login.style.display="block";
+        area.classList.remove("visible");
+        user.classList.remove("active");
+        login.style.display = "block";
+    }
 
-}
-
-displayProducts();
-
+    displayProducts();
 }
 
 function logout(){
 
-localStorage.removeItem("vexoAdmin");
+    localStorage.removeItem(
+        "vexoAdmin"
+    );
 
-updateAdmin();
-
+    updateAdmin();
 }
 
-function addProduct(){
+async function initializeProducts(){
 
-if(!isAdmin()){
+    if(initialized){
+        return;
+    }
 
-alert("ليس لديك صلاحية.");
+    initialized = true;
 
-return;
+    const currentRef =
+    ref(db,"products");
 
+    onValue(
+        currentRef,
+        async snapshot => {
+
+            if(!snapshot.exists()){
+
+                try{
+
+                    for(
+                        const product
+                        of originalProducts
+                    ){
+
+                        const newProduct =
+                        push(currentRef);
+
+                        await set(
+                            newProduct,
+                            product
+                        );
+                    }
+
+                }catch(error){
+
+                    console.error(error);
+
+                    alert(
+                        "تعذر إنشاء المنتجات الأساسية."
+                    );
+                }
+
+                return;
+            }
+
+            const data =
+            snapshot.val();
+
+            products =
+            Object.entries(data || {})
+            .map(([id,product]) => ({
+                id,
+                ...product
+            }));
+
+            displayProducts();
+        },
+        error => {
+
+            console.error(error);
+
+            document
+            .getElementById("products")
+            .innerHTML = `
+            <div class="empty">
+            تعذر الاتصال بقاعدة البيانات.
+            </div>
+            `;
+        }
+    );
 }
 
-const name =
-document
-.getElementById("productName")
-.value
-.trim();
+async function addProduct(){
 
-const icon =
-document
-.getElementById("productIcon")
-.value
-.trim() || "📦";
+    if(!isAdmin()){
 
-const description =
-document
-.getElementById("productDescription")
-.value
-.trim();
+        alert(
+            "ليس لديك صلاحية."
+        );
 
-if(!name || !description){
+        return;
+    }
 
-alert("يرجى تعبئة جميع البيانات.");
+    const name =
+    document
+    .getElementById("productName")
+    .value
+    .trim();
 
-return;
+    const icon =
+    document
+    .getElementById("productIcon")
+    .value
+    .trim() || "📦";
 
+    const description =
+    document
+    .getElementById("productDescription")
+    .value
+    .trim();
+
+    if(!name || !description){
+
+        alert(
+            "يرجى تعبئة جميع البيانات."
+        );
+
+        return;
+    }
+
+    try{
+
+        const newProduct =
+        push(productsRef);
+
+        await set(
+            newProduct,
+            {
+                name:name,
+                icon:icon,
+                description:description,
+                type:"custom"
+            }
+        );
+
+        document
+        .getElementById("productName")
+        .value = "";
+
+        document
+        .getElementById("productIcon")
+        .value = "";
+
+        document
+        .getElementById("productDescription")
+        .value = "";
+
+        alert(
+            "تم نشر المنتج للجميع بنجاح ✅"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "حدث خطأ أثناء نشر المنتج."
+        );
+    }
 }
 
-products.push({
+async function deleteProduct(id){
 
-name:name,
-icon:icon,
-description:description,
-type:"custom"
+    if(!isAdmin()){
 
-});
+        alert(
+            "ليس لديك صلاحية حذف المنتجات."
+        );
 
-localStorage.setItem(
-"vexoProducts",
-JSON.stringify(products)
-);
+        return;
+    }
 
-document.getElementById("productName").value="";
-document.getElementById("productIcon").value="";
-document.getElementById("productDescription").value="";
+    const product =
+    products.find(
+        item => item.id === id
+    );
 
-displayProducts();
+    if(!product){
+        return;
+    }
 
-alert("تمت إضافة المنتج بنجاح ✅");
+    const confirmDelete =
+    confirm(
+        "هل أنت متأكد أنك تريد حذف:\n\n" +
+        product.name +
+        "؟"
+    );
 
-}
+    if(!confirmDelete){
+        return;
+    }
 
-function deleteProduct(index){
+    try{
 
-if(!isAdmin()){
+        await remove(
+            ref(db,"products/" + id)
+        );
 
-alert("ليس لديك صلاحية حذف المنتجات.");
+        alert(
+            "تم حذف المنتج للجميع بنجاح 🗑️"
+        );
 
-return;
+    }catch(error){
 
-}
+        console.error(error);
 
-const product = products[index];
-
-if(!product){
-
-return;
-
-}
-
-const confirmDelete =
-confirm(
-"هل أنت متأكد أنك تريد حذف:\n\n" +
-product.name +
-"؟"
-);
-
-if(!confirmDelete){
-
-return;
-
-}
-
-products.splice(index,1);
-
-localStorage.setItem(
-"vexoProducts",
-JSON.stringify(products)
-);
-
-searchProducts();
-
-alert("تم حذف المنتج بنجاح 🗑️");
-
-}
-
-function escapeHTML(text){
-
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
+        alert(
+            "حدث خطأ أثناء حذف المنتج."
+        );
+    }
 }
 
 function openDiscord(){
-window.open(DISCORD_URL,"_blank");
+    window.open(
+        DISCORD_URL,
+        "_blank"
+    );
 }
 
 function openTelegram(){
-window.open(TELEGRAM_URL,"_blank");
+    window.open(
+        TELEGRAM_URL,
+        "_blank"
+    );
 }
 
 function openWhatsApp(){
-window.open(WHATSAPP_URL,"_blank");
+    window.open(
+        WHATSAPP_URL,
+        "_blank"
+    );
 }
 
 function openInstagram(){
-window.open(INSTAGRAM_URL,"_blank");
+    window.open(
+        INSTAGRAM_URL,
+        "_blank"
+    );
 }
 
 function openYouTube(){
-window.open(YOUTUBE_URL,"_blank");
+    window.open(
+        YOUTUBE_URL,
+        "_blank"
+    );
 }
 
 function openTikTok(){
-window.open(TIKTOK_URL,"_blank");
+    window.open(
+        TIKTOK_URL,
+        "_blank"
+    );
 }
 
 function openFacebook(){
-window.open(FACEBOOK_URL,"_blank");
+    window.open(
+        FACEBOOK_URL,
+        "_blank"
+    );
 }
 
 const particles =
-document.getElementById("particles");
+document.getElementById(
+    "particles"
+);
 
 function createParticle(){
 
-const particle =
-document.createElement("div");
+    const particle =
+    document.createElement("div");
 
-particle.className="particle";
+    particle.className =
+    "particle";
 
-particle.style.left =
-Math.random()*100+"vw";
+    particle.style.left =
+    Math.random() * 100 + "vw";
 
-const size =
-Math.random()*4+2;
+    const size =
+    Math.random() * 4 + 2;
 
-particle.style.width=size+"px";
-particle.style.height=size+"px";
+    particle.style.width =
+    size + "px";
 
-const duration =
-Math.random()*5+4;
+    particle.style.height =
+    size + "px";
 
-particle.style.animationDuration =
-duration+"s";
+    const duration =
+    Math.random() * 5 + 4;
 
-particle.style.opacity=Math.random();
+    particle.style.animationDuration =
+    duration + "s";
 
-particles.appendChild(particle);
+    particle.style.opacity =
+    Math.random();
 
-setTimeout(()=>{
-particle.remove();
-},duration*1000);
+    particles.appendChild(
+        particle
+    );
 
+    setTimeout(
+        () => particle.remove(),
+        duration * 1000
+    );
 }
 
-setInterval(createParticle,120);
-
-for(let i=0;i<25;i++){
-
-setTimeout(
-createParticle,
-i*100
+setInterval(
+    createParticle,
+    120
 );
 
+for(
+    let i = 0;
+    i < 25;
+    i++
+){
+
+    setTimeout(
+        createParticle,
+        i * 100
+    );
 }
 
 document
 .getElementById("loginModal")
-.addEventListener("click",function(e){
+.addEventListener(
+    "click",
+    function(e){
 
-if(e.target === this){
-closeLogin();
-}
-
-});
+        if(e.target === this){
+            closeLogin();
+        }
+    }
+);
 
 document
 .getElementById("contactModal")
-.addEventListener("click",function(e){
+.addEventListener(
+    "click",
+    function(e){
 
-if(e.target === this){
-closeContact();
-}
+        if(e.target === this){
+            closeContact();
+        }
+    }
+);
 
-});
+window.searchProducts =
+searchProducts;
 
-displayProducts();
+window.openLogin =
+openLogin;
+
+window.closeLogin =
+closeLogin;
+
+window.adminLogin =
+adminLogin;
+
+window.logout =
+logout;
+
+window.addProduct =
+addProduct;
+
+window.deleteProduct =
+deleteProduct;
+
+window.contactProduct =
+contactProduct;
+
+window.closeContact =
+closeContact;
+
+window.openDiscord =
+openDiscord;
+
+window.openTelegram =
+openTelegram;
+
+window.openWhatsApp =
+openWhatsApp;
+
+window.openInstagram =
+openInstagram;
+
+window.openYouTube =
+openYouTube;
+
+window.openTikTok =
+openTikTok;
+
+window.openFacebook =
+openFacebook;
+
 updateAdmin();
+initializeProducts();
 
 </script>
 
