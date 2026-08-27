@@ -150,7 +150,7 @@ header{
     margin:auto;
 }
 
- .hero{
+.hero{
     text-align:center;
     padding:75px 10px 50px;
 }
@@ -328,8 +328,9 @@ header{
 
 .form-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:15px;
+    align-items:start;
 }
 
 .input-group{
@@ -340,6 +341,14 @@ header{
 
 .input-group.full{
     grid-column:1/-1;
+}
+
+.input-group.icon-field{
+    width:150px;
+}
+
+.input-group.name-field{
+    width:100%;
 }
 
 .input-group label{
@@ -356,6 +365,16 @@ header{
     border-radius:11px;
     outline:none;
     padding:13px;
+}
+
+.input-group.icon-field input{
+    width:150px;
+    text-align:center;
+    font-size:18px;
+}
+
+.input-group.name-field input{
+    width:100%;
 }
 
 .input-group textarea{
@@ -565,6 +584,11 @@ footer{
         grid-column:auto;
     }
 
+    .input-group.icon-field,
+    .input-group.icon-field input{
+        width:100%;
+    }
+
     .logo{
         font-size:22px;
     }
@@ -699,7 +723,7 @@ id="adminAddSection">
 
 <div class="form-grid">
 
-<div class="input-group">
+<div class="input-group name-field">
 
 <label>
 اسم المنتج
@@ -712,20 +736,7 @@ placeholder="مثال: بانر شراكة">
 
 </div>
 
-<div class="input-group">
-
-<label>
-السعر
-</label>
-
-<input
-id="productPrice"
-type="text"
-placeholder="مثال: 2500 DA">
-
-</div>
-
-<div class="input-group full">
+<div class="input-group icon-field">
 
 <label>
 الإيموجي
@@ -734,7 +745,7 @@ placeholder="مثال: 2500 DA">
 <input
 id="productIcon"
 type="text"
-placeholder="👕">
+placeholder="🛒">
 
 </div>
 
@@ -1227,12 +1238,6 @@ document
 .value
 .trim();
 
-const price =
-document
-.getElementById("productPrice")
-.value
-.trim();
-
 const icon =
 document
 .getElementById("productIcon")
@@ -1245,7 +1250,7 @@ document
 .value
 .trim();
 
-if(!name || !price || !description){
+if(!name || !description){
 
 alert("يرجى تعبئة جميع البيانات.");
 
@@ -1256,7 +1261,6 @@ return;
 products.push({
 
 name:name,
-price:price,
 icon:icon,
 description:description,
 type:"custom"
@@ -1269,7 +1273,6 @@ JSON.stringify(products)
 );
 
 document.getElementById("productName").value="";
-document.getElementById("productPrice").value="";
 document.getElementById("productIcon").value="";
 document.getElementById("productDescription").value="";
 
