@@ -907,8 +907,8 @@ onclick="closeLogin()">
 <input
 class="login-input"
 id="adminUsername"
-type="text"
-placeholder="اسم المستخدم">
+type="email"
+placeholder="البريد الإلكتروني">
 
 <input
 class="login-input"
@@ -989,11 +989,19 @@ Facebook
 
 </div>
 
+
 <script type="module">
 
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 import {
     getDatabase,
@@ -1004,23 +1012,51 @@ import {
     remove
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCOPUfOHg3YjB63dq7Xk67KbDLQvyHaXIY",
-    authDomain: "vexo-store-007.firebaseapp.com",
-    databaseURL: "https://vexo-store-007-default-rtdb.firebaseio.com",
-    projectId: "vexo-store-007",
-    storageBucket: "vexo-store-007.firebasestorage.app",
-    messagingSenderId: "927286696006",
-    appId: "1:927286696006:web:1f3251c8459596c62b9247",
-    measurementId: "G-64MBDN7E4E"
+
+    apiKey:
+    "AIzaSyCOPUfOHg3YjB63dq7Xk67KbDLQvyHaXIY",
+
+    authDomain:
+    "vexo-store-007.firebaseapp.com",
+
+    databaseURL:
+    "https://vexo-store-007-default-rtdb.firebaseio.com",
+
+    projectId:
+    "vexo-store-007",
+
+    storageBucket:
+    "vexo-store-007.firebasestorage.app",
+
+    messagingSenderId:
+    "927286696006",
+
+    appId:
+    "1:927286696006:web:1f3251c8459596c62b9247",
+
+    measurementId:
+    "G-64MBDN7E4E"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const productsRef = ref(db,"products");
 
-const ADMIN_USERNAME = "Owner";
-const ADMIN_PASSWORD = "vN7!qZ2@Lx9#T4$wK8^mP6&cR3*Yh5!S";
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getDatabase(app);
+
+const productsRef =
+ref(db,"products");
+
+
+const ADMIN_UID =
+"ShV4psAPADSHq6MhwIFD1NOPcgF3";
+
 
 const DISCORD_URL =
 "https://discord.gg/wZCyyzWzv";
@@ -1043,44 +1079,55 @@ const TIKTOK_URL =
 const FACEBOOK_URL =
 "https://www.facebook.com/";
 
+
 const originalProducts = [
 
 {
     name:"تبديل الحساب",
     icon:"🔄",
-    description:"تريد تبديل حسابك؟ تواصل معنا لمعرفة التفاصيل.",
+    description:
+    "تريد تبديل حسابك؟ تواصل معنا لمعرفة التفاصيل.",
     type:"original"
 },
 
 {
     name:"شراء الحسابات",
     icon:"💰",
-    description:"تريد شراء حساب؟ تواصل معنا لمعرفة الحسابات المتوفرة.",
+    description:
+    "تريد شراء حساب؟ تواصل معنا لمعرفة الحسابات المتوفرة.",
     type:"original"
 },
 
 {
     name:"شراء الهاكات",
     icon:"🧑‍💻",
-    description:"تريد شراء برنامج أو خدمة؟ تواصل معنا لمعرفة التفاصيل.",
+    description:
+    "تريد شراء برنامج أو خدمة؟ تواصل معنا لمعرفة التفاصيل.",
     type:"original"
 },
 
 {
     name:"شراء الملابس",
     icon:"👕",
-    description:"تريد شراء ملابس؟ تواصل معنا لمعرفة المنتجات المتوفرة.",
+    description:
+    "تريد شراء ملابس؟ تواصل معنا لمعرفة المنتجات المتوفرة.",
     type:"original"
 }
 
 ];
 
+
 let products = [];
 let initialized = false;
+let currentAdmin = false;
+
 
 function isAdmin(){
-    return localStorage.getItem("vexoAdmin") === "true";
+
+    return currentAdmin === true;
+
 }
+
 
 function displayProducts(list = products){
 
@@ -1089,18 +1136,23 @@ function displayProducts(list = products){
 
     container.innerHTML = "";
 
+
     if(!list.length){
 
         const empty =
         document.createElement("div");
 
         empty.className = "empty";
-        empty.textContent = "لا توجد نتائج 🔎";
+
+        empty.textContent =
+        "لا توجد نتائج 🔎";
 
         container.appendChild(empty);
 
         return;
+
     }
+
 
     list.forEach(product => {
 
@@ -1109,21 +1161,30 @@ function displayProducts(list = products){
 
         card.className = "product";
 
+
         const image =
         document.createElement("div");
 
-        image.className = "product-image";
-        image.textContent = product.icon || "📦";
+        image.className =
+        "product-image";
+
+        image.textContent =
+        product.icon || "📦";
+
 
         const content =
         document.createElement("div");
 
-        content.className = "product-content";
+        content.className =
+        "product-content";
+
 
         const title =
         document.createElement("h3");
 
-        title.textContent = product.name || "";
+        title.textContent =
+        product.name || "";
+
 
         const description =
         document.createElement("p");
@@ -1131,41 +1192,66 @@ function displayProducts(list = products){
         description.textContent =
         product.description || "";
 
+
         const contact =
         document.createElement("button");
 
-        contact.className = "contact-btn";
-        contact.textContent = "📩 تواصل معنا عبر";
+        contact.className =
+        "contact-btn";
 
-        contact.onclick = function(){
+        contact.textContent =
+        "📩 تواصل معنا عبر";
+
+
+        contact.onclick =
+        function(){
+
             contactProduct(product.id);
+
         };
+
 
         content.appendChild(title);
         content.appendChild(description);
         content.appendChild(contact);
+
 
         if(isAdmin()){
 
             const deleteButton =
             document.createElement("button");
 
-            deleteButton.className = "delete-btn";
-            deleteButton.textContent = "🗑️ حذف المنتج";
+            deleteButton.className =
+            "delete-btn";
 
-            deleteButton.onclick = function(){
+            deleteButton.textContent =
+            "🗑️ حذف المنتج";
+
+
+            deleteButton.onclick =
+            function(){
+
                 deleteProduct(product.id);
+
             };
 
-            content.appendChild(deleteButton);
+
+            content.appendChild(
+                deleteButton
+            );
+
         }
+
 
         card.appendChild(image);
         card.appendChild(content);
 
         container.appendChild(card);
+
     });
+
 }
+
 
 function searchProducts(){
 
@@ -1176,6 +1262,7 @@ function searchProducts(){
     .toLowerCase()
     .trim();
 
+
     const result =
     products.filter(product => {
 
@@ -1183,140 +1270,217 @@ function searchProducts(){
         String(product.name || "")
         .toLowerCase();
 
+
         const description =
         String(product.description || "")
         .toLowerCase();
+
 
         return (
             name.includes(query) ||
             description.includes(query)
         );
+
     });
 
+
     displayProducts(result);
+
 }
+
 
 function contactProduct(id){
 
     const product =
-    products.find(item => item.id === id);
+    products.find(
+        item => item.id === id
+    );
+
 
     if(!product){
         return;
     }
 
+
     document
     .getElementById("selectedProduct")
     .textContent =
-    "تريد الاستفسار عن: " + product.name;
+    "تريد الاستفسار عن: " +
+    product.name;
+
 
     document
     .getElementById("contactModal")
     .classList.add("active");
+
 }
+
 
 function closeContact(){
 
     document
     .getElementById("contactModal")
     .classList.remove("active");
+
 }
 
+
 function openLogin(){
+
+    if(isAdmin()){
+        return;
+    }
+
 
     document
     .getElementById("loginModal")
     .classList.add("active");
+
 }
+
 
 function closeLogin(){
 
     document
     .getElementById("loginModal")
     .classList.remove("active");
+
 }
 
-function adminLogin(){
 
-    const username =
+async function adminLogin(){
+
+    const email =
     document
     .getElementById("adminUsername")
     .value
     .trim();
+
 
     const password =
     document
     .getElementById("adminPassword")
     .value;
 
-    if(
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ){
 
-        localStorage.setItem(
-            "vexoAdmin",
-            "true"
+    if(!email || !password){
+
+        alert(
+            "يرجى إدخال البريد الإلكتروني وكلمة المرور."
         );
 
+        return;
+
+    }
+
+
+    try{
+
+        const credential =
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+
+        if(
+            credential.user.uid !==
+            ADMIN_UID
+        ){
+
+            await signOut(auth);
+
+            alert(
+                "هذا الحساب ليس حساب الإدارة."
+            );
+
+            return;
+
+        }
+
+
         closeLogin();
-        updateAdmin();
+
 
         alert(
             "تم تسجيل دخول الإدارة بنجاح 👑"
         );
 
-    }else{
+
+    }catch(error){
+
+        console.error(error);
 
         alert(
             "بيانات الدخول غير صحيحة."
         );
+
     }
+
 }
 
-function updateAdmin(){
 
-    const admin = isAdmin();
+async function logout(){
+
+    try{
+
+        await signOut(auth);
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+function updateAdmin(){
 
     const area =
     document.getElementById(
         "adminAddSection"
     );
 
+
     const user =
     document.getElementById(
         "adminUser"
     );
+
 
     const login =
     document.getElementById(
         "loginButton"
     );
 
-    if(admin){
+
+    if(isAdmin()){
 
         area.classList.add("visible");
+
         user.classList.add("active");
-        login.style.display = "none";
+
+        login.style.display =
+        "none";
 
     }else{
 
         area.classList.remove("visible");
+
         user.classList.remove("active");
-        login.style.display = "block";
+
+        login.style.display =
+        "block";
+
     }
 
+
     displayProducts();
+
 }
 
-function logout(){
-
-    localStorage.removeItem(
-        "vexoAdmin"
-    );
-
-    updateAdmin();
-}
 
 async function initializeProducts(){
 
@@ -1324,13 +1488,13 @@ async function initializeProducts(){
         return;
     }
 
+
     initialized = true;
 
-    const currentRef =
-    ref(db,"products");
 
     onValue(
-        currentRef,
+        productsRef,
+
         async snapshot => {
 
             if(!snapshot.exists()){
@@ -1343,41 +1507,51 @@ async function initializeProducts(){
                     ){
 
                         const newProduct =
-                        push(currentRef);
+                        push(productsRef);
+
 
                         await set(
                             newProduct,
                             product
                         );
+
                     }
 
                 }catch(error){
 
                     console.error(error);
 
-                    alert(
-                        "تعذر إنشاء المنتجات الأساسية."
-                    );
                 }
 
                 return;
+
             }
+
 
             const data =
             snapshot.val();
 
+
             products =
-            Object.entries(data || {})
-            .map(([id,product]) => ({
-                id,
-                ...product
-            }));
+            Object.entries(
+                data || {}
+            )
+            .map(
+                ([id,product]) => ({
+                    id,
+                    ...product
+                })
+            );
+
 
             displayProducts();
+
         },
+
         error => {
 
             console.error(error);
+
 
             document
             .getElementById("products")
@@ -1386,9 +1560,13 @@ async function initializeProducts(){
             تعذر الاتصال بقاعدة البيانات.
             </div>
             `;
+
         }
+
     );
+
 }
+
 
 async function addProduct(){
 
@@ -1399,7 +1577,9 @@ async function addProduct(){
         );
 
         return;
+
     }
+
 
     const name =
     document
@@ -1407,17 +1587,20 @@ async function addProduct(){
     .value
     .trim();
 
+
     const icon =
     document
     .getElementById("productIcon")
     .value
     .trim() || "📦";
 
+
     const description =
     document
     .getElementById("productDescription")
     .value
     .trim();
+
 
     if(!name || !description){
 
@@ -1426,12 +1609,15 @@ async function addProduct(){
         );
 
         return;
+
     }
+
 
     try{
 
         const newProduct =
         push(productsRef);
+
 
         await set(
             newProduct,
@@ -1443,31 +1629,40 @@ async function addProduct(){
             }
         );
 
+
         document
         .getElementById("productName")
         .value = "";
+
 
         document
         .getElementById("productIcon")
         .value = "";
 
+
         document
         .getElementById("productDescription")
         .value = "";
+
 
         alert(
             "تم نشر المنتج للجميع بنجاح ✅"
         );
 
+
     }catch(error){
 
         console.error(error);
 
+
         alert(
             "حدث خطأ أثناء نشر المنتج."
         );
+
     }
+
 }
+
 
 async function deleteProduct(id){
 
@@ -1478,16 +1673,20 @@ async function deleteProduct(id){
         );
 
         return;
+
     }
+
 
     const product =
     products.find(
         item => item.id === id
     );
 
+
     if(!product){
         return;
     }
+
 
     const confirmDelete =
     confirm(
@@ -1496,29 +1695,40 @@ async function deleteProduct(id){
         "؟"
     );
 
+
     if(!confirmDelete){
         return;
     }
 
+
     try{
 
         await remove(
-            ref(db,"products/" + id)
+            ref(
+                db,
+                "products/" + id
+            )
         );
+
 
         alert(
             "تم حذف المنتج للجميع بنجاح 🗑️"
         );
 
+
     }catch(error){
 
         console.error(error);
 
+
         alert(
             "حدث خطأ أثناء حذف المنتج."
         );
+
     }
+
 }
+
 
 function openDiscord(){
     window.open(
@@ -1527,12 +1737,14 @@ function openDiscord(){
     );
 }
 
+
 function openTelegram(){
     window.open(
         TELEGRAM_URL,
         "_blank"
     );
 }
+
 
 function openWhatsApp(){
     window.open(
@@ -1541,12 +1753,14 @@ function openWhatsApp(){
     );
 }
 
+
 function openInstagram(){
     window.open(
         INSTAGRAM_URL,
         "_blank"
     );
 }
+
 
 function openYouTube(){
     window.open(
@@ -1555,12 +1769,14 @@ function openYouTube(){
     );
 }
 
+
 function openTikTok(){
     window.open(
         TIKTOK_URL,
         "_blank"
     );
 }
+
 
 function openFacebook(){
     window.open(
@@ -1569,54 +1785,69 @@ function openFacebook(){
     );
 }
 
+
 const particles =
 document.getElementById(
     "particles"
 );
+
 
 function createParticle(){
 
     const particle =
     document.createElement("div");
 
+
     particle.className =
     "particle";
+
 
     particle.style.left =
     Math.random() * 100 + "vw";
 
+
     const size =
     Math.random() * 4 + 2;
+
 
     particle.style.width =
     size + "px";
 
+
     particle.style.height =
     size + "px";
+
 
     const duration =
     Math.random() * 5 + 4;
 
+
     particle.style.animationDuration =
     duration + "s";
 
+
     particle.style.opacity =
     Math.random();
+
 
     particles.appendChild(
         particle
     );
 
+
     setTimeout(
         () => particle.remove(),
         duration * 1000
     );
+
 }
+
 
 setInterval(
     createParticle,
     120
 );
+
 
 for(
     let i = 0;
@@ -1628,7 +1859,9 @@ for(
         createParticle,
         i * 100
     );
+
 }
+
 
 document
 .getElementById("loginModal")
@@ -1639,8 +1872,10 @@ document
         if(e.target === this){
             closeLogin();
         }
+
     }
 );
+
 
 document
 .getElementById("contactModal")
@@ -1651,8 +1886,34 @@ document
         if(e.target === this){
             closeContact();
         }
+
     }
 );
+
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if(
+            user &&
+            user.uid === ADMIN_UID
+        ){
+
+            currentAdmin = true;
+
+        }else{
+
+            currentAdmin = false;
+
+        }
+
+
+        updateAdmin();
+
+    }
+);
+
 
 window.searchProducts =
 searchProducts;
@@ -1702,7 +1963,7 @@ openTikTok;
 window.openFacebook =
 openFacebook;
 
-updateAdmin();
+
 initializeProducts();
 
 </script>
